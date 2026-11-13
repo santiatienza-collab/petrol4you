@@ -121,17 +121,21 @@
   /* ads */
   .ads{background:var(--vo);color:#fff}
   .ads h2{color:var(--dc)}
-  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:700px;margin:0 auto}
-  .ph{background:var(--crema);border-radius:22px;border:3px solid #7b8a80;padding:12px;color:var(--tx);height:260px;position:relative;overflow:hidden}
-  .ph.pr{border-color:var(--d)}
-  .ph h4{margin:0 0 8px;font-size:.9rem;text-align:center}
-  .ph .ln{height:12px;border-radius:6px;background:var(--menta);margin:10px 0}
-  .ph .adb{position:absolute;left:10px;right:10px;bottom:10px;height:50px;background:#fff;border:2px dashed #999;border-radius:8px;display:grid;place-items:center;font-size:.75rem;color:#777;animation:blink 2s infinite}
-  @keyframes blink{50%{background:#ffe9a8}}
-  .ph.pr .adb{display:none}
-  .ph.pr::after{content:"Sin anuncios ✓";position:absolute;bottom:14px;left:0;right:0;text-align:center;color:var(--v);font-weight:800;animation:pop2 2.4s infinite}
-  @keyframes pop2{50%{transform:scale(1.08)}}
-  .cap{text-align:center;margin-top:10px;font-weight:700}
+  .cmp{display:flex;align-items:center;justify-content:center;gap:26px;max-width:760px;margin:0 auto}
+  .adph{position:relative;width:280px;flex:none}
+  .adph img.scr{display:block;width:100%;border-radius:28px;border:4px solid #7b8a80;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+  .adph.pr img.scr{border-color:var(--d)}
+  .adph .hl{position:absolute;left:3%;right:3%;top:81.4%;height:6.6%;border:3px solid #ff5a4d;border-radius:8px;box-shadow:0 0 0 0 rgba(255,90,77,.7);animation:pulse 1.8s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 14px rgba(255,90,77,0)}100%{box-shadow:0 0 0 0 rgba(255,90,77,0)}}
+  .adph .badge{position:absolute;left:50%;top:-14px;transform:translateX(-50%);white-space:nowrap;font-weight:800;font-size:.8rem;padding:5px 14px;border-radius:999px}
+  .adph .badge.bad{background:#ff5a4d;color:#fff}
+  .adph.pr .badge{background:var(--d);color:#1a1a1a;animation:pop2 2.4s infinite}
+  @keyframes pop2{50%{transform:translateX(-50%) scale(1.08)}}
+  .arrow{font-size:2.4rem;color:var(--dc);animation:nudge 1.6s infinite}
+  @keyframes nudge{50%{transform:translateX(8px)}}
+  .cap{text-align:center;margin-top:12px;font-weight:700}
+  .adlist{list-style:none;padding:0;margin:34px auto 0;max-width:640px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .adlist li{background:rgba(255,255,255,.1);border:1px solid rgba(232,207,122,.5);color:var(--dc);padding:8px 16px;border-radius:999px;font-weight:600}
 
   /* pricing */
   .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;max-width:640px;margin:0 auto}
@@ -155,7 +159,7 @@
   .shotpair:hover .s1{transform:rotate(-1deg) translateY(-6px)}.shotpair:hover .s2{transform:rotate(1deg) translateY(-6px)}
   .shotpair.single{height:auto}.shotpair.single img{position:relative;display:block;width:62%;margin:0 auto;transform:none}
   .ev{background:linear-gradient(180deg,#fff,var(--menta))}
-  @media(max-width:800px){
+  @media(max-width:800px){.cmp{flex-direction:column}.arrow{transform:rotate(90deg);animation:none}.adph{width:250px}
     .hero .wrap,.split{grid-template-columns:1fr}.hero{text-align:center}.hero p{margin-inline:auto}.hero h1{font-size:2.1rem}
     .split.rev .vis{order:0}.gal img{height:400px}.pbanner h2{font-size:1.9rem}nav .links a:not(.pm):not(.dl){display:none}
     .btn.ghost{margin:12px 0 0}.plan.best{transform:none}
@@ -304,11 +308,19 @@
 
 <section class="ads"><div class="wrap">
   <h2 class="rv">Y además, sin anuncios</h2>
-  <p class="sub rv" style="color:#cfd9d2">Solo Premium elimina la publicidad: la app limpia, rápida y centrada en lo que importa.</p>
+  <p class="sub rv" style="color:#cfd9d2">Solo Premium elimina la publicidad: la app limpia y centrada en lo que importa.</p>
   <div class="cmp rv">
-    <div><div class="ph"><h4>Gratis</h4><div class="ln"></div><div class="ln" style="width:70%"></div><div class="ln"></div><div class="adb">Anuncio</div></div><div class="cap">Con anuncios</div></div>
-    <div><div class="ph pr"><h4>Premium</h4><div class="ln"></div><div class="ln" style="width:70%"></div><div class="ln"></div><div class="ln" style="width:85%"></div></div><div class="cap" style="color:var(--dc)">Sin anuncios</div></div>
+    <div>
+      <div class="adph"><span class="badge bad">Gratis · con anuncios</span><img class="scr" src="img/lista_con_anuncios.png" alt="Lista de gasolineras con banner de anuncio"><span class="hl"></span></div>
+      <div class="cap">Banner publicitario fijo</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div>
+      <div class="adph pr"><span class="badge">Premium · sin anuncios</span><img class="scr" src="img/02_lista.png" alt="La misma lista de gasolineras sin ningún anuncio"></div>
+      <div class="cap" style="color:var(--dc)">Pantalla limpia ✓</div>
+    </div>
   </div>
+  <ul class="adlist rv"><li>🚫 Sin banners</li><li>🚫 Sin anuncios a pantalla completa</li><li>⚡ Más espacio para tus precios</li><li>✨ Una app más limpia</li></ul>
 </div></section>
 
 <section><div class="wrap">
