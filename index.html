@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Petrol4you · Reposta más barato, siempre</title>
+<meta name="description" content="Encuentra las gasolineras y cargadores más baratos, planifica la ruta del ahorro y controla los gastos de tu flota. Premium sin anuncios, 15 días gratis.">
+<link rel="icon" href="img/favicon.png">
+<style>
+  :root{--v:#1b5e3a;--vo:#0f3f26;--d:#c9a227;--dc:#e8cf7a;--crema:#faf8f0;--menta:#e4eed7;--tx:#1d2a22}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--tx);background:var(--crema);line-height:1.55;overflow-x:hidden}
+  a{color:inherit}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  h2{color:var(--v);font-size:1.9rem;margin:0 0 10px;text-align:center}
+  .sub{text-align:center;max-width:640px;margin:0 auto 34px;color:#4b5b51}
+  section{padding:64px 0}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+  .rv.in{opacity:1;transform:none}
+  .rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
+
+  nav{background:var(--vo);position:sticky;top:0;z-index:20}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;color:var(--dc);font-weight:700;font-size:1.25rem;text-decoration:none}
+  .logo img{width:36px;height:36px;border-radius:9px}
+  nav .links{display:flex;gap:20px;align-items:center}
+  nav .links a{color:#fff;text-decoration:none;font-size:.95rem}
+  nav .links a.pm{color:var(--dc);font-weight:700}
+
+  .btn{display:inline-block;background:var(--d);color:#1a1a1a;font-weight:700;padding:14px 26px;border-radius:999px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.3);transition:transform .2s,background .2s}
+  .btn:hover{background:var(--dc);transform:translateY(-2px)}
+  .btn.ghost{background:transparent;color:#fff;border:2px solid var(--dc);box-shadow:none;margin-left:10px}
+
+  .hero{background:linear-gradient(160deg,#237549,var(--vo));color:#fff;padding:56px 0 70px;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;border:2px solid rgba(201,162,39,.25);animation:spin 40s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;position:relative}
+  .hero h1{font-size:2.7rem;line-height:1.1;margin:0 0 16px;color:var(--dc)}
+  .hero p{font-size:1.15rem;margin:0 0 28px;max-width:36ch}
+  .hero img{width:100%;max-width:290px;justify-self:center;border-radius:28px;border:4px solid var(--d);box-shadow:0 20px 50px rgba(0,0,0,.5);animation:float 5s ease-in-out infinite}
+  @keyframes float{50%{transform:translateY(-12px)}}
+
+  .feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+  .card{background:var(--menta);border-radius:20px;padding:22px;transition:transform .25s,box-shadow .25s}
+  .card:hover{transform:translateY(-6px);box-shadow:0 12px 26px rgba(15,63,38,.18)}
+  .card .ic{font-size:1.8rem}
+  .card h3{margin:6px 0 6px;color:var(--v)}
+  .card p{margin:0}
+
+  .shots{background:#fff}
+  .gal{display:flex;gap:18px;overflow-x:auto;padding:6px 4px 16px;scroll-snap-type:x mandatory}
+  .gal img{height:500px;border-radius:24px;border:3px solid var(--d);scroll-snap-align:center;flex:none}
+
+  /* ===== PREMIUM ===== */
+  .pbanner{background:linear-gradient(135deg,var(--vo),var(--v));color:#fff;text-align:center;padding:78px 0 70px;position:relative;overflow:hidden}
+  .pbanner h2{color:var(--dc);font-size:2.4rem}
+  .pbanner .sub{color:#d9e6dd}
+  .crown{width:84px;height:84px;margin:0 auto 14px;animation:pop 3s ease-in-out infinite}
+  @keyframes pop{50%{transform:scale(1.08) rotate(-4deg)}}
+  .chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
+  .chip{background:rgba(255,255,255,.1);border:1px solid rgba(232,207,122,.5);color:var(--dc);padding:10px 18px;border-radius:999px;font-weight:600}
+  .spark{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--dc);opacity:.0;animation:tw 4s infinite}
+  @keyframes tw{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:.9;transform:scale(1.2)}}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+  .split.rev .vis{order:-1}
+  .tag{display:inline-block;background:var(--d);color:#1a1a1a;font-weight:700;font-size:.8rem;padding:4px 12px;border-radius:999px;margin-bottom:10px;letter-spacing:.04em}
+  .split h3{font-size:1.9rem;color:var(--v);margin:0 0 10px;line-height:1.15}
+  .steps{list-style:none;padding:0;margin:18px 0 0;counter-reset:s}
+  .steps li{counter-increment:s;position:relative;padding:0 0 16px 52px}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;background:var(--v);color:var(--dc);font-weight:700;display:grid;place-items:center}
+  .steps b{display:block;color:var(--v)}
+  .alt{background:#fff}
+
+  /* phone mock */
+  .phone{width:290px;margin:0 auto;background:var(--crema);border:4px solid var(--d);border-radius:34px;overflow:hidden;box-shadow:0 20px 50px rgba(15,63,38,.35)}
+  .phone .bar{background:var(--v);color:var(--d);font-weight:700;padding:14px 16px;font-size:1.1rem}
+  .phone .body{padding:14px}
+  .map{position:relative;height:190px;background:#dfe9cf;border-radius:16px;overflow:hidden}
+  .map>svg:first-child{position:absolute;inset:0;width:100%;height:100%}
+  .map .car{position:absolute;left:0;top:0;width:22px;height:22px;margin:-11px 0 0 -11px}
+  .route{stroke-dasharray:520;stroke-dashoffset:520}
+  .in .route{animation:draw 2.6s .3s ease forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .pin{opacity:0;transform-origin:center;transform-box:fill-box}
+  .in .pin{animation:drop .6s ease forwards}
+  .in .pin.p1{animation-delay:1.2s}.in .pin.p2{animation-delay:1.6s}.in .pin.p3{animation-delay:2s}
+  @keyframes drop{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+  .car{offset-path:path("M18 150 C 61 150, 70 70, 123 80 S 193 40, 237 30");offset-distance:0%}
+  .in .car{animation:drive 3.4s .4s ease-in-out forwards}
+  @keyframes drive{to{offset-distance:100%}}
+  .stop{margin-top:12px;background:var(--menta);border-radius:14px;padding:12px 14px;position:relative;opacity:0;transform:translateY(10px)}
+  .in .stop{animation:up .6s 2.3s ease forwards}
+  @keyframes up{to{opacity:1;transform:none}}
+  .stop .best{position:absolute;right:10px;top:-10px;background:var(--d);color:#1a1a1a;font-size:.68rem;font-weight:800;padding:3px 9px;border-radius:999px}
+  .stop b{display:block}
+  .stop small{color:#4b5b51}
+  .stop .price{float:right;font-size:1.3rem;font-weight:700;color:var(--v)}
+  .save{color:var(--v);font-weight:700;margin-top:4px;display:block}
+  .btnm{display:block;text-align:center;background:var(--v);color:var(--dc);border-radius:999px;padding:10px;margin-top:10px;font-weight:700;font-size:.9rem}
+
+  /* fleet */
+  .sum{background:var(--menta);border-radius:16px;padding:14px}
+  .sum .tot{font-size:1.8rem;font-weight:800;color:var(--v)}
+  .bars{display:flex;align-items:flex-end;gap:8px;height:110px;margin-top:12px}
+  .bars i{flex:1;background:linear-gradient(var(--d),#a8871a);border-radius:6px 6px 0 0;height:0;transition:height 1.2s cubic-bezier(.2,.8,.2,1)}
+  .in .bars i{height:var(--h)}
+  .bars i:nth-child(2){transition-delay:.1s}.bars i:nth-child(3){transition-delay:.2s}.bars i:nth-child(4){transition-delay:.3s}.bars i:nth-child(5){transition-delay:.4s}.bars i:nth-child(6){transition-delay:.5s}
+  .lbl{display:flex;gap:8px;font-size:.68rem;color:#4b5b51;margin-top:4px}.lbl span{flex:1;text-align:center}
+  .row{display:flex;justify-content:space-between;border-bottom:1px solid #d9d4bd;padding:8px 2px;font-size:.85rem}
+  .exp{display:flex;gap:8px;margin-top:12px}
+  .exp span{flex:1;text-align:center;border-radius:999px;padding:8px;font-weight:700;font-size:.85rem;background:var(--v);color:var(--dc)}
+  .exp span.pdf{background:#fff;color:var(--v);border:2px solid var(--v)}
+  .vlist{list-style:none;padding:0;margin:16px 0 0}
+  .vlist li{padding:6px 0 6px 30px;position:relative}
+  .vlist li::before{content:"✓";position:absolute;left:0;color:#fff;background:var(--v);width:22px;height:22px;border-radius:50%;font-size:.8rem;display:grid;place-items:center;top:8px}
+
+  /* ads */
+  .ads{background:var(--vo);color:#fff}
+  .ads h2{color:var(--dc)}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:700px;margin:0 auto}
+  .ph{background:var(--crema);border-radius:22px;border:3px solid #7b8a80;padding:12px;color:var(--tx);height:260px;position:relative;overflow:hidden}
+  .ph.pr{border-color:var(--d)}
+  .ph h4{margin:0 0 8px;font-size:.9rem;text-align:center}
+  .ph .ln{height:12px;border-radius:6px;background:var(--menta);margin:10px 0}
+  .ph .adb{position:absolute;left:10px;right:10px;bottom:10px;height:50px;background:#fff;border:2px dashed #999;border-radius:8px;display:grid;place-items:center;font-size:.75rem;color:#777;animation:blink 2s infinite}
+  @keyframes blink{50%{background:#ffe9a8}}
+  .ph.pr .adb{display:none}
+  .ph.pr::after{content:"Sin anuncios ✓";position:absolute;bottom:14px;left:0;right:0;text-align:center;color:var(--v);font-weight:800;animation:pop2 2.4s infinite}
+  @keyframes pop2{50%{transform:scale(1.08)}}
+  .cap{text-align:center;margin-top:10px;font-weight:700}
+
+  /* pricing */
+  .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;max-width:640px;margin:0 auto}
+  .plan{background:#fff;border:2px solid #d9d4bd;border-radius:24px;padding:28px;text-align:center;position:relative}
+  .plan.best{border-color:var(--d);background:var(--menta);transform:scale(1.03)}
+  .plan .rib{position:absolute;right:16px;top:-14px;background:var(--d);color:#1a1a1a;font-weight:800;font-size:.75rem;padding:5px 12px;border-radius:999px}
+  .plan h3{margin:0;color:var(--v)}
+  .plan .pr{font-size:2.6rem;font-weight:800;color:var(--v);margin:8px 0 0}
+  .plan small{display:block;color:#4b5b51}
+  .free15{text-align:center;margin-top:24px;font-weight:700;color:var(--v)}
+  .cta{background:linear-gradient(135deg,#237549,var(--vo));color:#fff;text-align:center;padding:70px 0}
+  .cta h2{color:var(--dc)}
+  footer{background:var(--vo);color:#cfd9d2;padding:28px 0;font-size:.9rem;text-align:center;border-top:1px solid rgba(255,255,255,.1)}
+  footer a{color:var(--dc)}
+  .note{font-size:.75rem;color:#6b7a70;text-align:center;margin-top:18px}
+
+  @media(max-width:800px){
+    .hero .wrap,.split{grid-template-columns:1fr}.hero{text-align:center}.hero p{margin-inline:auto}.hero h1{font-size:2.1rem}
+    .split.rev .vis{order:0}.gal img{height:400px}.pbanner h2{font-size:1.9rem}nav .links a:not(.pm):not(.dl){display:none}
+    .btn.ghost{margin:12px 0 0}.plan.best{transform:none}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.route{stroke-dashoffset:0}.pin,.stop{opacity:1}.bars i{height:var(--h)}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="#"><img src="img/icono.png" alt="">Petrol4you</a>
+  <div class="links">
+    <a href="#funciones">Funciones</a>
+    <a class="pm" href="#premium">Premium</a>
+    <a class="dl" href="https://play.google.com/store/apps/details?id=com.petrol4you.miapp">Descargar</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="rv">
+    <h1>Reposta más barato, siempre</h1>
+    <p>Encuentra la gasolinera o el cargador más barato cerca de ti, planifica dónde parar en tu ruta y controla tus gastos.</p>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=com.petrol4you.miapp">Descargar en Google Play</a>
+    <a class="btn ghost" href="#premium">Ver Premium ★</a>
+  </div>
+  <img class="rv d2" src="img/01_mapa.png" alt="Mapa de Petrol4you con los precios de las gasolineras">
+</div></header>
+
+<section id="funciones"><div class="wrap">
+  <h2 class="rv">Gratis: lo esencial para ahorrar</h2>
+  <p class="sub rv">Sin registro. Abre la app y mira cuánto cuesta repostar a tu alrededor.</p>
+  <div class="feat">
+    <div class="card rv"><div class="ic">🗺️</div><h3>Mapa de precios</h3><p>Precio de cada gasolinera de un vistazo, con filtros por combustible, marca y radio.</p></div>
+    <div class="card rv d1"><div class="ic">📋</div><h3>Lista y ahorro real</h3><p>Ordena por precio o distancia y mira cuánto ahorras frente a la más cercana.</p></div>
+    <div class="card rv d2"><div class="ic">💳</div><h3>Tarjetas de descuento</h3><p>Aplica tus descuentos y ve el precio final por litro.</p></div>
+    <div class="card rv"><div class="ic">🧮</div><h3>Calculadora de viaje</h3><p>Calcula el gasto y el consumo total de tu trayecto.</p></div>
+    <div class="card rv d1"><div class="ic">📈</div><h3>Predicción de precio</h3><p>Te avisamos de si conviene repostar hoy o esperar.</p></div>
+    <div class="card rv d2"><div class="ic">⚡</div><h3>Eléctrico</h3><p>Puntos de recarga cercanos, con datos de Open Charge Map.</p></div>
+  </div>
+</div></section>
+
+<section class="shots"><div class="wrap">
+  <h2 class="rv">Así se ve</h2>
+  <div class="gal rv">
+    <img src="img/01_mapa.png" alt="Mapa">
+    <img src="img/02_lista.png" alt="Lista de gasolineras">
+    <img src="img/03_calc.png" alt="Calculadora de viaje">
+    <img src="img/04_ruta.png" alt="Petrol4you Premium">
+  </div>
+</div></section>
+
+<!-- ============ PREMIUM ============ -->
+<div class="pbanner" id="premium">
+  <span class="spark" style="left:12%;top:20%"></span><span class="spark" style="left:82%;top:30%;animation-delay:1s"></span>
+  <span class="spark" style="left:30%;top:80%;animation-delay:2s"></span><span class="spark" style="left:70%;top:75%;animation-delay:.5s"></span>
+  <div class="wrap">
+    <svg class="crown" viewBox="0 0 100 100"><circle cx="50" cy="42" r="30" fill="#c9a227"/><circle cx="50" cy="42" r="23" fill="#faf8f0"/><path d="M50 27l4.6 9.5 10.4 1.5-7.5 7.3 1.8 10.4L50 50.8l-9.3 4.9 1.8-10.4-7.5-7.3 10.4-1.5z" fill="#c9a227"/><path d="M33 66l-6 28 23-10 23 10-6-28" fill="#c9a227"/></svg>
+    <h2 class="rv">Petrol4you Premium</h2>
+    <p class="sub rv">Ahorra más con la ruta inteligente, lleva tu flota al día y usa la app sin ningún anuncio.</p>
+    <div class="chips rv">
+      <span class="chip">🛣️ Ruta del ahorro</span>
+      <span class="chip">🚚 Flota y autónomos</span>
+      <span class="chip">🚫 Sin anuncios</span>
+    </div>
+    <p class="rv" style="margin-top:26px"><a class="btn" href="https://play.google.com/store/apps/details?id=com.petrol4you.miapp">Probar 15 días gratis</a></p>
+  </div>
+</div>
+
+<section><div class="wrap split">
+  <div class="rv">
+    <span class="tag">PREMIUM · RUTA DEL AHORRO</span>
+    <h3>Dime a dónde vas y te digo dónde parar</h3>
+    <p>Calcula tu ruta por carretera y compara las gasolineras que hay a lo largo del camino, con tus descuentos ya aplicados, para que pagues lo menos posible.</p>
+    <ol class="steps">
+      <li><b>Indica tu destino</b>Busca la dirección y elige tu combustible.</li>
+      <li><b>Cuéntanos cuánto llevas</b>Litros en el depósito, autonomía del cuadro de mandos o "no lo sé": solo te proponemos paradas a las que llegas.</li>
+      <li><b>Recibe la MEJOR PARADA</b>Verás en qué km de tu ruta está, cuánto desvío supone y cuánto ahorras frente a una gasolinera media del trayecto.</li>
+      <li><b>Navega con parada</b>Abre Google Maps o Waze con la parada ya incluida.</li>
+    </ol>
+  </div>
+  <div class="vis rv d2">
+    <div class="phone">
+      <div class="bar">Ruta del ahorro</div>
+      <div class="body">
+        <div class="map">
+          <svg viewBox="0 0 290 190" preserveAspectRatio="none">
+            <rect width="290" height="190" fill="#e6efd6"/>
+            <path d="M0 120 Q80 100 150 140 T290 120" stroke="#cfe0ec" stroke-width="26" fill="none"/>
+            <path class="route" d="M20 150 C 70 150, 80 70, 140 80 S 220 40, 270 30" stroke="#1b5e3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <g class="pin p1"><circle cx="85" cy="105" r="9" fill="#faf8f0" stroke="#1b5e3a" stroke-width="3"/><text x="85" y="109" font-size="10" text-anchor="middle" fill="#1b5e3a" font-weight="700">€</text></g>
+            <g class="pin p2"><circle cx="150" cy="78" r="14" fill="#c9a227"/><circle cx="150" cy="78" r="10" fill="#1b5e3a"/><text x="150" y="83" font-size="13" text-anchor="middle" fill="#e8cf7a" font-weight="800">★</text></g>
+            <g class="pin p3"><circle cx="225" cy="50" r="9" fill="#faf8f0" stroke="#1b5e3a" stroke-width="3"/><text x="225" y="54" font-size="10" text-anchor="middle" fill="#1b5e3a" font-weight="700">€</text></g>
+            <circle cx="270" cy="30" r="7" fill="#c9a227"/>
+          </svg>
+          <svg class="car" width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#faf8f0" stroke="#c9a227" stroke-width="3"/><circle cx="12" cy="12" r="4" fill="#1b5e3a"/></svg>
+        </div>
+        <div class="stop"><span class="best">MEJOR PARADA</span><span class="price">1,619 €/l</span><b>BP La Hondura</b><small>En el km 38 de tu ruta · BP Club −0,020 €/l</small><span class="save">Ahorras 3,40 € frente a una gasolinera media de la ruta</span></div>
+        <div class="btnm">Navegar con parada</div>
+      </div>
+    </div>
+    <p class="note">Ejemplo ilustrativo de la función.</p>
+  </div>
+</div></section>
+
+<section class="alt"><div class="wrap split rev">
+  <div class="rv">
+    <span class="tag">PREMIUM · FLOTA Y AUTÓNOMOS</span>
+    <h3>Tus gastos de combustible, bajo control</h3>
+    <p>Pensado para autónomos, repartidores y pequeñas flotas: registra cada repostaje y ten claro cuánto gastas al mes, vehículo por vehículo.</p>
+    <ul class="vlist">
+      <li><b>Varios vehículos</b> con nombre o matrícula, y vista "Todos" o por vehículo.</li>
+      <li><b>Repostajes en segundos:</b> fecha, combustible, cantidad, precio, estación y cuentakilómetros.</li>
+      <li><b>Resumen mensual</b> con el total gastado y navegación mes a mes.</li>
+      <li><b>Consumo real</b> calculado a partir del cuentakilómetros.</li>
+      <li><b>Informes en CSV y PDF</b> listos para tu gestor o para tu declaración.</li>
+      <li><b>Tus datos, en tu móvil:</b> no se envían a ningún servidor nuestro.</li>
+    </ul>
+  </div>
+  <div class="vis rv d2">
+    <div class="phone">
+      <div class="bar">Flota y autónomos</div>
+      <div class="body">
+        <div class="sum">
+          <small>Gastos de combustible · Noviembre 2026</small>
+          <div class="tot">248,60 €</div>
+          <div class="bars"><i style="--h:55%"></i><i style="--h:80%"></i><i style="--h:40%"></i><i style="--h:100%"></i><i style="--h:65%"></i><i style="--h:30%"></i></div>
+          <div class="lbl"><span>S1</span><span>S2</span><span>S3</span><span>S4</span><span>S5</span><span>S6</span></div>
+        </div>
+        <div style="margin-top:8px">
+          <div class="row"><span>02/11 · Furgoneta</span><b>62,10 €</b></div>
+          <div class="row"><span>09/11 · Turismo</span><b>41,85 €</b></div>
+          <div class="row"><span>11/11 · Furgoneta</span><b>58,40 €</b></div>
+        </div>
+        <div class="exp"><span>CSV</span><span class="pdf">PDF</span></div>
+      </div>
+    </div>
+    <p class="note">Ejemplo ilustrativo con datos ficticios.</p>
+  </div>
+</div></section>
+
+<section class="ads"><div class="wrap">
+  <h2 class="rv">Y además, sin anuncios</h2>
+  <p class="sub rv" style="color:#cfd9d2">Solo Premium elimina la publicidad: la app limpia, rápida y centrada en lo que importa.</p>
+  <div class="cmp rv">
+    <div><div class="ph"><h4>Gratis</h4><div class="ln"></div><div class="ln" style="width:70%"></div><div class="ln"></div><div class="adb">Anuncio</div></div><div class="cap">Con anuncios</div></div>
+    <div><div class="ph pr"><h4>Premium</h4><div class="ln"></div><div class="ln" style="width:70%"></div><div class="ln"></div><div class="ln" style="width:85%"></div></div><div class="cap" style="color:var(--dc)">Sin anuncios</div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="rv">Elige tu plan</h2>
+  <p class="sub rv">Prueba gratis 15 días. Cancela cuando quieras desde Google Play.</p>
+  <div class="plans">
+    <div class="plan best rv"><span class="rib">MEJOR PRECIO</span><h3>Anual</h3><div class="pr">30 €</div><small>al año · ≈ 2,50 € al mes</small><small><b>Ahorras un 50 %</b></small></div>
+    <div class="plan rv d1"><h3>Mensual</h3><div class="pr">5 €</div><small>al mes</small><small>Sin compromiso</small></div>
+  </div>
+  <p class="free15 rv">✓ Ruta del ahorro &nbsp; ✓ Flota y autónomos &nbsp; ✓ Sin anuncios</p>
+</div></section>
+
+<section class="cta"><div class="wrap rv">
+  <h2>Empieza a ahorrar hoy</h2>
+  <p style="margin:0 0 24px">Descarga Petrol4you gratis y prueba Premium durante 15 días.</p>
+  <a class="btn" href="https://play.google.com/store/apps/details?id=com.petrol4you.miapp">Descargar en Google Play</a>
+</div></section>
+
+<footer><div class="wrap">
+  <p>© 2026 Petrol4you · <a href="https://santiatienza-collab.github.io/petrol4you-privacy/">Política de privacidad</a> · <a href="mailto:soporte.petrol4you@outlook.es">Contacto</a></p>
+  <p>Mapas © colaboradores de OpenStreetMap. Datos de cargadores de Open Charge Map. Google Play y el logotipo de Google Play son marcas de Google LLC.</p>
+</div></footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.18});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
