@@ -148,6 +148,13 @@
   footer a{color:var(--dc)}
   .note{font-size:.75rem;color:#6b7a70;text-align:center;margin-top:18px}
 
+  .shotpair{position:relative;height:640px;max-width:460px;margin:0 auto}
+  .shotpair img{position:absolute;width:62%;border-radius:26px;border:4px solid var(--d);box-shadow:0 20px 50px rgba(15,63,38,.35);transition:transform .4s}
+  .shotpair .s1{left:0;top:0;z-index:2;transform:rotate(-3deg)}
+  .shotpair .s2{right:0;top:60px;transform:rotate(3deg)}
+  .shotpair:hover .s1{transform:rotate(-1deg) translateY(-6px)}.shotpair:hover .s2{transform:rotate(1deg) translateY(-6px)}
+  .shotpair.single{height:auto}.shotpair.single img{position:relative;display:block;width:62%;margin:0 auto;transform:none}
+  .ev{background:linear-gradient(180deg,#fff,var(--menta))}
   @media(max-width:800px){
     .hero .wrap,.split{grid-template-columns:1fr}.hero{text-align:center}.hero p{margin-inline:auto}.hero h1{font-size:2.1rem}
     .split.rev .vis{order:0}.gal img{height:400px}.pbanner h2{font-size:1.9rem}nav .links a:not(.pm):not(.dl){display:none}
@@ -169,7 +176,7 @@
 <header class="hero"><div class="wrap">
   <div class="rv">
     <h1>Reposta más barato, siempre</h1>
-    <p>Encuentra la gasolinera o el cargador más barato cerca de ti, planifica dónde parar en tu ruta y controla tus gastos.</p>
+    <p>Encuentra la gasolinera o el cargador más barato cerca de ti, encuentra puntos de recarga eléctrica, planifica dónde parar y controla tus gastos.</p>
     <a class="btn" href="https://play.google.com/store/apps/details?id=com.petrol4you.miapp">Descargar en Google Play</a>
     <a class="btn ghost" href="#premium">Ver Premium ★</a>
   </div>
@@ -185,7 +192,25 @@
     <div class="card rv d2"><div class="ic">💳</div><h3>Tarjetas de descuento</h3><p>Aplica tus descuentos y ve el precio final por litro.</p></div>
     <div class="card rv"><div class="ic">🧮</div><h3>Calculadora de viaje</h3><p>Calcula el gasto y el consumo total de tu trayecto.</p></div>
     <div class="card rv d1"><div class="ic">📈</div><h3>Predicción de precio</h3><p>Te avisamos de si conviene repostar hoy o esperar.</p></div>
-    <div class="card rv d2"><div class="ic">⚡</div><h3>Eléctrico</h3><p>Puntos de recarga cercanos, con datos de Open Charge Map.</p></div>
+    <div class="card rv d2"><div class="ic">⚡</div><h3>Mapa de recarga eléctrica</h3><p>Estaciones enchufables cercanas con su potencia en kW, directamente en el mapa.</p></div>
+  </div>
+</div></section>
+
+<section class="ev"><div class="wrap split rev">
+  <div class="rv">
+    <span class="tag">⚡ MAPA ELÉCTRICO · GRATIS</span>
+    <h3>Encuentra tu próximo enchufe</h3>
+    <p>Cambia al modo <b>Eléctrico</b> y el mapa muestra las estaciones de recarga enchufables cerca de ti, con la potencia de cada punto de un vistazo.</p>
+    <ul class="vlist">
+      <li><b>Potencia en el mapa:</b> 2, 6, 11, 22, 50 o 60 kW en cada etiqueta.</li>
+      <li><b>Recarga rápida destacada:</b> los puntos de carga rápida se resaltan en verde.</li>
+      <li><b>Cerca de ti,</b> con la misma lista, filtros y navegación que las gasolineras.</li>
+      <li><b>Datos abiertos</b> de Open Charge Map, la base colaborativa de puntos de recarga.</li>
+    </ul>
+    <p style="margin-top:20px"><a class="btn" href="https://play.google.com/store/apps/details?id=com.petrol4you.miapp">Descargar en Google Play</a></p>
+  </div>
+  <div class="vis rv d2">
+    <div class="shotpair single"><img class="s1" src="img/05_electrico.png" alt="Mapa de estaciones de recarga eléctrica enchufables con su potencia en kW"></div>
   </div>
 </div></section>
 
@@ -195,6 +220,8 @@
     <img src="img/01_mapa.png" alt="Mapa">
     <img src="img/02_lista.png" alt="Lista de gasolineras">
     <img src="img/03_calc.png" alt="Calculadora de viaje">
+    <img src="img/05_electrico.png" alt="Mapa de estaciones eléctricas">
+    <img src="img/flota_resumen.png" alt="Flota y autónomos">
     <img src="img/04_ruta.png" alt="Petrol4you Premium">
   </div>
 </div></section>
@@ -267,24 +294,11 @@
     </ul>
   </div>
   <div class="vis rv d2">
-    <div class="phone">
-      <div class="bar">Flota y autónomos</div>
-      <div class="body">
-        <div class="sum">
-          <small>Gastos de combustible · Noviembre 2026</small>
-          <div class="tot">248,60 €</div>
-          <div class="bars"><i style="--h:55%"></i><i style="--h:80%"></i><i style="--h:40%"></i><i style="--h:100%"></i><i style="--h:65%"></i><i style="--h:30%"></i></div>
-          <div class="lbl"><span>S1</span><span>S2</span><span>S3</span><span>S4</span><span>S5</span><span>S6</span></div>
-        </div>
-        <div style="margin-top:8px">
-          <div class="row"><span>02/11 · Furgoneta</span><b>62,10 €</b></div>
-          <div class="row"><span>09/11 · Turismo</span><b>41,85 €</b></div>
-          <div class="row"><span>11/11 · Furgoneta</span><b>58,40 €</b></div>
-        </div>
-        <div class="exp"><span>CSV</span><span class="pdf">PDF</span></div>
-      </div>
+    <div class="shotpair">
+      <img class="s1" src="img/flota_resumen.png" alt="Resumen mensual de Flota y autónomos con gasto total, repostajes y consumo medio">
+      <img class="s2" src="img/flota_lista.png" alt="Lista de repostajes de varios vehículos">
     </div>
-    <p class="note">Ejemplo ilustrativo con datos ficticios.</p>
+    <p class="note">Capturas reales de la app con datos de prueba.</p>
   </div>
 </div></section>
 
